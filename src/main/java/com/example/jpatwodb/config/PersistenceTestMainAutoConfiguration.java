@@ -17,15 +17,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.HashMap;
 
-//@Configuration
-//@PropertySource({"classpath:application.properties"})
-//@EnableJpaRepositories(basePackages = "com.example.jpatwodb.dao.lrmdb", entityManagerFactoryRef = "lrmEntityManager", transactionManagerRef = "lrmTransactionManager")
-public class PersistenceLRMAutoConfiguration {
+@Configuration
+@PropertySource({"classpath:application.properties"})
+@EnableJpaRepositories(basePackages = "com.example.jpatwodb.dao.testmaindb", entityManagerFactoryRef = "testmainEntityManager", transactionManagerRef = "testmainTransactionManager")
+public class PersistenceTestMainAutoConfiguration {
 
     @Autowired
     private Environment env;
 
-    public PersistenceLRMAutoConfiguration() {
+    public PersistenceTestMainAutoConfiguration() {
         super();
     }
 
@@ -33,10 +33,10 @@ public class PersistenceLRMAutoConfiguration {
 
     @Primary
     @Bean
-    public LocalContainerEntityManagerFactoryBean lrmEntityManager() {
+    public LocalContainerEntityManagerFactoryBean testmainEntityManager() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(lrmDataSource());
-        em.setPackagesToScan("com.example.jpatwodb.model.lrmdb");
+        em.setDataSource(testmainDataSource());
+        em.setPackagesToScan("com.example.jpatwodb.model.testmaindb");
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -51,15 +51,15 @@ public class PersistenceLRMAutoConfiguration {
     @Primary
     @Bean
     @ConfigurationProperties(prefix="spring.datasource")
-    public DataSource lrmDataSource() {
+    public DataSource testmainDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Primary
     @Bean
-    public PlatformTransactionManager lrmTransactionManager() {
+    public PlatformTransactionManager testmainTransactionManager() {
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(lrmEntityManager().getObject());
+        transactionManager.setEntityManagerFactory(testmainEntityManager().getObject());
         return transactionManager;
     }
 }
