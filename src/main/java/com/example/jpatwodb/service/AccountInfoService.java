@@ -1,7 +1,7 @@
 package com.example.jpatwodb.service;
 
-import com.example.jpatwodb.dao.lrmdb.AccountInfoRepository;
-import com.example.jpatwodb.model.lrmdb.AccountInfo;
+import com.example.jpatwodb.dao.testmaindb.AccountInfoRepository;
+import com.example.jpatwodb.model.testmaindb.AccountInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
