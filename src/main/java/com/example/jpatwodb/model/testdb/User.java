@@ -14,7 +14,7 @@ public class User {
 
     @Id
     @Column(name="user_name", length=30)
-    private String userName;
+    private String username;
 
     @Column(name="pw", length=200)
     private String pw;
